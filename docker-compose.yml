@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+
+  api:
+    build:
+      context: .
+      dockerfile: build/Dockerfile
+    volumes:
+      - ./project:/code
+    environment:
+      GUNICORN_RELOAD: "False"
+      LOG_LOCAL: "True" # External logging like IP
+      LOG_LEVEL: 20
+      LOGGER_SWAGGER: "False" # Unnecessary logging
+      FASTAPI_ROOT_PATH: ""
+      # Uvicorn logging
+      LC_ALL: "C.UTF-8"
+      LANG: "C.UTF-8"
+      FASTAPI_RELOAD: "True"
+    command: /bin/sh run_uvicorn.sh # Uvicorn - reload
+    # command: ["python3", "-m", "api"] # Uvicorn with python
+    ports:
+      - 8080:8080
+    networks:
+      - backend
+
+
+networks:
+  backend:
+    driver: bridge
