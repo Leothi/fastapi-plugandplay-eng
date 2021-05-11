@@ -8,8 +8,8 @@ router = APIRouter()
 
 
 @router.get('/get', response_model=GetExampleResponse, summary="Summary 1 - String to upper case.")
-def router_get(string: str = Query(..., 
-                                   description="Input string.", 
+def router_get(string: str = Query(...,
+                                   description="Input string.",
                                    example="string")) -> dict:
     """GET route example. Returns input string in upper case."""
 

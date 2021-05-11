@@ -37,7 +37,7 @@ class ExceptionHandler:
     @staticmethod
     async def http_excep(request: Request, exception: HTTPException):
         message = {404: "Not Found",
-                   500: "Internal Server Error'", 
+                   500: "Internal Server Error'",
                    400: "Bad Request"}
         return JSONResponse(
             status_code=exception.status_code,
