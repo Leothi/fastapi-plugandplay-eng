@@ -9,12 +9,9 @@ services:
     volumes:
       - ./project:/project
     environment:
-      GUNICORN_RELOAD: "False"
       RUNNING_ENV: "dev"
       LOG_LOCAL: "True" # External logging like IP
       LOG_LEVEL: 10
-      LOGGER_SWAGGER: "False" # Unnecessary logging
-      FASTAPI_ROOT_PATH: ""
       # Uvicorn logging
       LC_ALL: "C.UTF-8"
       LANG: "C.UTF-8"

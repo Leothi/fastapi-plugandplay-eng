@@ -10,14 +10,14 @@ class EnvironmentVariables(BaseSettings):
     FASTAPI_PORT: int = 8080
     FASTAPI_RELOAD: bool = False
     FASTAPI_ACCESS_LOG: bool = False
-    FASTAPI_ROOT_PATH: str
+    FASTAPI_ROOT_PATH: str = ""
 
     # Logger
     LOGGER_SWAGGER: bool = False
     LOGGER_IGNORE: str = '/docs /redoc /openapi.json /metrics /health /favicon.ico / /# /_static/perfil_ico.png /_static/perfil.png'
     LOGURU_FORMAT: str = DEFAULT_FORMAT
     LOG_LOCAL: bool = False
-    LOG_LEVEL: int = 10
+    LOG_LEVEL: int = 20
 
     # Development
     RUNNING_ENV: str

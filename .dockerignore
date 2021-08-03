@@ -1,0 +1,4 @@
+cloudrun-*.yaml
+**/app.yaml
+**/.env
+**/logs/
