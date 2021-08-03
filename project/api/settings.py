@@ -19,6 +19,8 @@ class EnvironmentVariables(BaseSettings):
     LOG_LOCAL: bool = False
     LOG_LEVEL: int = 10
 
+    # Development
+    RUNNING_ENV: str
 
 envs = EnvironmentVariables()
 

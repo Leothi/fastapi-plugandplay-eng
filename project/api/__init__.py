@@ -28,9 +28,10 @@ logger.level('REQUEST RECEIVED', no=37, color="<yellow>")
 logger.level('REQUEST DONE', no=38, color="<yellow>")
 logger.level('LOG ROUTE', no=39, color="<light-green>")
 
-# Logger output file
-logger.add("./logs/test.log", level=0, format=envs.LOGURU_FORMAT, rotation='500 MB')
-logger.add("./logs/test_error.log", level=40, format=envs.LOGURU_FORMAT, rotation='500 MB')
+if envs.RUNNING_ENV == 'dev':
+    # Logger output file
+    logger.add("./logs/test.log", level=0, format=envs.LOGURU_FORMAT, rotation='500 MB')
+    logger.add("./logs/test_error.log", level=40, format=envs.LOGURU_FORMAT, rotation='500 MB')
 
 # API Instance
 app = FastAPI(title='Plug and Play API',
