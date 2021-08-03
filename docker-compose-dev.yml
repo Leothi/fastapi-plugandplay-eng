@@ -5,7 +5,7 @@ services:
   api:
     build:
       context: .
-      dockerfile: build/Dockerfile
+      dockerfile: Dockerfile
     volumes:
       - ./project:/project
     environment:
