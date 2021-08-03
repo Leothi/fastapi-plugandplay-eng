@@ -22,6 +22,7 @@ class EnvironmentVariables(BaseSettings):
     # Development
     RUNNING_ENV: str
 
+
 envs = EnvironmentVariables()
 
 bind = os.environ.get('GUNICORN_BIND', '0.0.0.0:8080')

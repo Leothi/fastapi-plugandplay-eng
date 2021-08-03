@@ -6,8 +6,6 @@ services:
     build:
       context: .
       dockerfile: build/Dockerfile
-    volumes:
-      - ./project:/project
     environment:
       GUNICORN_RELOAD: "False"
       RUNNING_ENV: "prod"
@@ -15,10 +13,6 @@ services:
       LOG_LEVEL: 20
       LOGGER_SWAGGER: "False" # Unnecessary logging
       FASTAPI_ROOT_PATH: ""
-      # Uvicorn logging
-      LC_ALL: "C.UTF-8"
-      LANG: "C.UTF-8"
-      FASTAPI_RELOAD: "True"
     ports:
       - 8080:8080
     networks:
