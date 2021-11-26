@@ -19,50 +19,43 @@ class APIException(Exception):
 class ExceptionHandler:
 
     def __init__(self, app: FastAPI):
-        app.exception_handler(Exception)(self.exception_handler)
-        app.exception_handler(HTTPException)(self.http_excep)
-        app.exception_handler(APIException)(self.camara_exception_handler)
+        app.exception_handler(Exception)(self.handler_exception)
+        app.exception_handler(HTTPException)(self.handler_http_excep)
+        app.exception_handler(APIException)(self.handler_api_exception)
         app.exception_handler(RequestValidationError)(
-            self.validation_exception_handler)
+            self.handler_validation_exception)
 
     @staticmethod
-    async def exception_handler(request: Request, exception: Exception):
+    async def handler_exception(request: Request, exception: Exception):
         return JSONResponse(
-            status_code=500, content={
-                "status": 500,
-                "message": 'Internal Server Error'
-            }
+            status_code=500, content={"message": 'Internal server error'}
         )
 
     @staticmethod
-    async def http_excep(request: Request, exception: HTTPException):
-        message = {404: "Not Found",
-                   500: "Internal Server Error'",
-                   400: "Bad Request"}
-        return JSONResponse(
-            status_code=exception.status_code,
-            content={
-                "status": exception.status_code,
-                "message": message[exception.status_code]
-            }
-        )
-
-    @staticmethod
-    async def camara_exception_handler(request: Request, exception: APIException):
+    async def handler_http_excep(request: Request, exception: HTTPException):
+        default_http_responses = {404: "Not found",
+                                  500: "Internal server error",
+                                  400: "Bad request"}
+        message = str(exception)
+        if exception.status_code in default_http_responses.keys():
+            message = default_http_responses[exception.status_code]
         return JSONResponse(
             status_code=exception.status_code,
-            content={
-                "status": exception.status_code,
-                "message": exception.message
-            }
+            content={"message": message}
         )
 
     @staticmethod
-    async def validation_exception_handler(request: Request, exception: RequestValidationError):
+    async def handler_api_exception(request: Request, exception: APIException):
+        return JSONResponse(
+            status_code=exception.status_code,
+            content={"message": exception.message}
+        )
+
+    @staticmethod
+    async def handler_validation_exception(request: Request, exception: RequestValidationError):
         return JSONResponse(
             status_code=422,
             content={
-                "status": 422,
                 "message": "Invalid request parameters.",
                 "details": str(exception)
             }

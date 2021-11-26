@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Query
 from loguru import logger
 
-from api.models.example import GetExampleResponse, PostExampleResponse, PostExampleInput
+from api.schemas.example import GetExampleResponse, PostExampleResponse, PostExampleInput
 from api.modules import example as modulo_example
 
 router = APIRouter()

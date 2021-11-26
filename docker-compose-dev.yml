@@ -10,7 +10,6 @@ services:
       - ./project:/project
     environment:
       RUNNING_ENV: "dev"
-      LOG_LOCAL: "True" # External logging like IP
       LOG_LEVEL: 10
       # Uvicorn logging
       LC_ALL: "C.UTF-8"

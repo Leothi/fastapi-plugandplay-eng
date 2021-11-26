@@ -1,1 +1,1 @@
-uvicorn api:app --host 0.0.0.0 --port=8080 --reload --no-access-log
+uvicorn --factory --host 0.0.0.0 --port=8080 --reload --no-access-log api.app:get_app
