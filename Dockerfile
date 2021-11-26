@@ -16,4 +16,4 @@ COPY ./project/ /project/
 ENV LANG C.UTF-8
 EXPOSE 8080
 
-CMD ["gunicorn", "-k", "uvicorn.workers.UvicornWorker", "-c", "api/settings.py", "api:app"]
+CMD ["gunicorn", "-k", "uvicorn.workers.UvicornWorker", "-c", "api/settings.py", "api.app:get_app()"]

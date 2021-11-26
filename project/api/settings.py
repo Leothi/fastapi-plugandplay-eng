@@ -1,7 +1,16 @@
 import os
 
-from pydantic import BaseSettings
+from pydantic import BaseSettings as PydanticBaseSettings
 from api.utils.logger import DEFAULT_FORMAT
+
+
+class BaseSettings(PydanticBaseSettings):
+    def __getattribute__(self, item):
+
+        attr = object.__getattribute__(self, item)
+        if attr is None:
+            raise NotImplementedError(f'Env var {item} not implemented')
+        return attr
 
 
 class EnvironmentVariables(BaseSettings):
@@ -13,14 +22,12 @@ class EnvironmentVariables(BaseSettings):
     FASTAPI_ROOT_PATH: str = ""
 
     # Logger
-    LOGGER_SWAGGER: bool = False
     LOGGER_IGNORE: str = '/docs /redoc /openapi.json /metrics /health /favicon.ico / /# /_static/perfil_ico.png /_static/perfil.png'
     LOGURU_FORMAT: str = DEFAULT_FORMAT
-    LOG_LOCAL: bool = False
     LOG_LEVEL: int = 20
 
     # Development
-    RUNNING_ENV: str
+    RUNNING_ENV: str = 'dev'
 
 
 envs = EnvironmentVariables()

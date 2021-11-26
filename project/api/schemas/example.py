@@ -1,6 +1,6 @@
 from pydantic import Field, BaseModel
 
-from api.models import SuccessResponse
+from api.schemas import SuccessResponse
 
 
 class GetExampleResponse(SuccessResponse):
