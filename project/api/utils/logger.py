@@ -3,7 +3,7 @@ from loguru import logger
 # Logging with string allignment
 time = '<green>{time:YYYY-MM-DD HH:mm:ss.SSS}</green>'
 level = "<level>{level: ^18}</level>"
-function = "<cyan>{name: <40}</cyan>:<cyan>{function: ^30}</cyan>:<cyan>{line: 5}</cyan>"
+function = "<cyan>{name: <30}</cyan>:<cyan>{function: ^30}</cyan>:<cyan>{line: 5}</cyan>"
 message = "<bold>{message}</bold>"
 
 DEFAULT_FORMAT = ' | '.join([time, level, function, message])
