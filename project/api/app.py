@@ -30,7 +30,6 @@ def get_app() -> FastAPI:
     logger.level('LOG ROUTE', no=39, color="<light-green>")
 
     async def startup_event():
-        global rm_model
         logger.info("Starting API")
 
     async def shutdown_event():
