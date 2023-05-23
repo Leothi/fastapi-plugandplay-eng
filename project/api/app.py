@@ -5,7 +5,7 @@ from loguru import logger
 from starlette.middleware.cors import CORSMiddleware
 
 from api import __version__
-from api.routes import example
+from api.routes import example, math
 from api.schemas import DEFAULT_RESPONSES_JSON
 from api.modules.default.middleware import Middleware
 from api.exceptions import ExceptionHandler
@@ -63,6 +63,10 @@ def get_app() -> FastAPI:
     # Router
     app.include_router(
         example.router, prefix='/example', tags=['Route example'],
+        responses={**DEFAULT_RESPONSES_JSON})
+    
+    app.include_router(
+        math.router, prefix='/math', tags=['Math route example'],
         responses={**DEFAULT_RESPONSES_JSON})
 
     # API Modules
