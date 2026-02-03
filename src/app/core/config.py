@@ -16,9 +16,6 @@ class Settings(BaseSettings):
     log_level: str = "INFO"
     log_json: bool = False
 
-    mongo_dsn: str | None = None
-    mongo_db: str = "app"
-
     model_config = SettingsConfigDict(
         env_file=".env",
         env_file_encoding="utf-8",

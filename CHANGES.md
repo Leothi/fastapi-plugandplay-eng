@@ -7,7 +7,6 @@ Branch: chore/modernize-template
 - Migrated to a modern `src/` layout with a new app factory, settings, routers, schemas, services, and tests.
 - Switched to Pydantic v2 and `pydantic-settings` for configuration.
 - Added middleware for request IDs and request timing.
-- Added MongoDB async client scaffold (PyMongo async API) with lifespan hooks.
 - Modernized Docker, Compose, and documentation.
 - Added linting, formatting, typing, tests, coverage, and pre-commit tooling.
 - Added CI workflow using `uv`.
@@ -42,7 +41,6 @@ Branch: chore/modernize-template
 - `src/app/schemas/health.py`
 - `src/app/schemas/example.py`
 - `src/app/services/example.py`
-- `src/app/db/mongo.py`
 
 ### Tests
 - `tests/test_health.py`
@@ -53,7 +51,7 @@ Branch: chore/modernize-template
 - `.flake8` (replaced by Ruff)
 
 ## Dependency Updates (high level)
-- FastAPI, Uvicorn, Pydantic v2, Pydantic Settings, PyMongo upgraded.
+- FastAPI, Uvicorn, Pydantic v2, Pydantic Settings upgraded.
 - Tooling: Ruff, Mypy, Pytest, Coverage, Pre-commit added/updated.
 
 ## Environment & Tooling

@@ -6,7 +6,7 @@ Branch: chore/modernize-template
 ## Highlights
 - Migrated to a modern `src/` layout with a new app factory, routers, schemas, services, and tests.
 - Upgraded to Pydantic v2 with `pydantic-settings` for configuration.
-- Added request ID + timing middleware and MongoDB async client scaffold with lifespan hooks.
+- Added request ID + timing middleware.
 - Modernized Docker/Compose and documentation.
 - Added linting, formatting, typing, tests, coverage, pre-commit, and CI with `uv`.
 
