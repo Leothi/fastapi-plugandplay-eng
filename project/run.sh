@@ -1,1 +1,0 @@
-gunicorn -k=uvicorn.workers.UvicornWorker -c=python:api.settings api.app:get_app
