@@ -1,19 +1,17 @@
-FROM python:3.8-buster
+FROM python:3.12-slim
 
-WORKDIR /project
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1
 
-RUN apt-get update && apt-get install -y \
-    python3 \
-    python3-pip \
-    python3-setuptools \
-    && rm -rf /var/lib/apt/lists/*
+WORKDIR /app
 
-COPY ./project/requirements.txt /project
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir uv
 
-COPY ./project/ /project/
+COPY pyproject.toml README.md /app/
+COPY src /app/src
 
-ENV LANG C.UTF-8
+RUN uv pip install --system .
+
 EXPOSE 8080
 
-CMD ["gunicorn", "-k", "uvicorn.workers.UvicornWorker", "-c", "api/settings.py", "api.app:get_app()"]
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8080"]
